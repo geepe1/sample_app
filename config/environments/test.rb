@@ -18,6 +18,12 @@ SampleApp::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+# Speed up tests by lowering BCrypt's cost function. 
+  require 'bcrypt'
+  silence_warnings do 
+    BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
+  end 
+  
   # Raise exceptions instead of rendering exception templates
   config.action_dispatch.show_exceptions = false
 
